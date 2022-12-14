@@ -2,17 +2,25 @@
 
 public class RendererSet : MonoBehaviour
 {
-    new public Renderer renderer;
-        public int      instanceID;
+    [Tooltip("このオブジェクトを描画しているRenderer"), SerializeField]
+    new private Renderer renderer;
+    [Tooltip("レンダラーにセットされたマテリアルのインスタンスID"), SerializeField]
+    int instanceID;
 
-    [Range(0, 1)]
-    public float floatValue;
+    [Tooltip("マテリアルに指定する値"), SerializeField, Range(0, 1)]
+    private float floatValue;
 
     void Update ()
     {
-        renderer.material.SetFloat("_FloatValue", floatValue);
-        // renderer.sharedMaterial.SetFloat("_FloatValue", floatValue);
+        // Renderer.materialを参照した時点でマテリアルのインスタンスを複製する
+        // 複製されるということは、マテリアルを一括で変更できなくなる
+        // 不特定多数のオブジェクトで参照を行った場合、メモリリークの可能性もある
+        // renderer.material.SetFloat("_FloatValue", floatValue);
+        // instanceID = renderer.material.GetInstanceID();
 
-        instanceID = renderer.material.GetInstanceID();
+        // インスタンスを複製せずにマテリアルを参照するときは.sharedMaterialを使う。
+        // しかし、オブジェクト毎に異なる値を設定することはできない
+        renderer.sharedMaterial.SetFloat("_FloatValue", floatValue);
+        instanceID = renderer.sharedMaterial.GetInstanceID();
     }
 }

@@ -1,5 +1,6 @@
 ﻿Shader "Sample/ScriptToShaderB"
 {
+    // スクリプトから値を設定するためプロパティは必須ではない
     //Properties
     //{
     //    _FloatValue("Float Value", Range(0, 1)) = 0

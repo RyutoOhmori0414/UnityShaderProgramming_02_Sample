@@ -2,17 +2,23 @@
 
 public class PropertyBlock : MonoBehaviour
 {
-    new public Renderer renderer;
-        public Material material;
-        public int      instanceID;
+    [Tooltip("変更するマテリアルを持つRenderer"), SerializeField]
+    new private Renderer renderer;
+    [Tooltip("変更するマテリアル"), SerializeField]
+    private Material material;
+    [Tooltip("マテリアルのインスタンスID"), SerializeField]
+    private int instanceID;
 
-    [Range(0, 1)]
-    public float floatValue;
+    [SerializeField, Range(0, 1)]
+    private float floatValue;
 
     private MaterialPropertyBlock materialPropertyBlock;
 
     private void Start()
     {
+        // マテリアルの値を直接変更しないため、インスタンスの複製は起こらない
+        // 上書きする値だけを保持するため必要なメモリリソースは少なく済む
+        // 複数のオブジェクトのマテリアルにわずかに異なる値を与えたい際に採用する
         materialPropertyBlock = new MaterialPropertyBlock();
     }
 
@@ -20,6 +26,7 @@ public class PropertyBlock : MonoBehaviour
     {
         materialPropertyBlock.SetFloat("_FloatValue", floatValue);
 
+        // 適用する際はレンダラーにセットする
         renderer.SetPropertyBlock(materialPropertyBlock);
 
         instanceID = material.GetInstanceID();

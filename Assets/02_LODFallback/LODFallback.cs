@@ -2,7 +2,8 @@
 
 public class LODFallback : MonoBehaviour
 {
-    public int ShaderLOD = 600;
+    [Tooltip("GlobalLODの値"), SerializeField, Range(100f, 600f)]
+    private int ShaderLOD = 600;
 
     private void OnGUI()
     {
@@ -14,6 +15,8 @@ public class LODFallback : MonoBehaviour
 
         GUILayout.EndArea();
 
+        // Shader.globalMaximumLODですべてのshaderのLODを変更している
+        // 特定のshaderのLODを変更したい場合は、Shader.maximumLODを工夫して使う
         Shader.globalMaximumLOD = this.ShaderLOD;
         // shader.maximumLOD;
     }
