@@ -10,7 +10,14 @@
 
         Pass
         {
+            // RGBA を 0000 の2進数で扱っているため
+            // int で指定する際は R = 9 = 1001
+            // 白 + Mask R は 1001 ではなく 1XX1
+            // でXは計算しないため乗算で白の上でも白になる
             ColorMask R
+
+            // 乗算
+            Blend DstColor Zero
 
             CGPROGRAM
 
@@ -38,7 +45,7 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return fixed4(1, 1, 1, 1);
+                return fixed4(1, 0, 0, 1);
             }
 
             ENDCG

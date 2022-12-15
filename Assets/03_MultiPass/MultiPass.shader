@@ -9,6 +9,9 @@
         }
         Pass
         {
+            // Passは必ず一つの出力を持っている
+            // このパスは赤色を出力している
+
             CGPROGRAM
 
             #pragma vertex   vert
@@ -43,6 +46,12 @@
 
         Pass
         {
+            // このパスは水色を出力している
+
+            // ブレンドのタイプを指定している。
+            // Blend One One なので加算合成
+            // https://docs.unity3d.com/ja/2019.4/Manual/SL-Blend.html
+            // ↑Blendについてのリファレンス
             Blend One One
 
             CGPROGRAM
