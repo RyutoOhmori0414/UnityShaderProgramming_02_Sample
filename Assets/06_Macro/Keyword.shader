@@ -18,6 +18,7 @@
             #pragma vertex   vert
             #pragma fragment frag
 
+            // ここでキーワードを定義している
             #define KEYWORD_RED
 
             struct appdata
@@ -39,6 +40,9 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
+                // ここでKEYWORD_REDが定義されているか判定している
+                // されていれば、赤　なければ、白　が出力される
+                // コンパイル時に判定されるため実行時の負荷が少ない
                 #ifdef KEYWORD_RED
 
                 return fixed4(1, 0, 0, 1);
