@@ -4,10 +4,19 @@
     {
         Pass
         {
+            // 「シェーダバリアント(Shader Variant)」は、一つのソースコードから
+            // わずかに異なる複数のシェーダプログラミングを生成する仕組み
             CGPROGRAM
 
             #pragma vertex   vert
             #pragma fragment frag
+
+            // ここで、なにも定義されていないもの、REDが定義されているもの
+            // GREENが定義されているもの、BLUEが定義されているもの
+            // の4パターンでコンパイルしろということ
+            // 
+            // ここでは4つのシェーダプログラミングが
+            // 1つのマテリアルに紐づけられていることになる
             #pragma multi_compile _ RED GREEN BLUE
 
             #include "UnityCG.cginc"
@@ -31,6 +40,8 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
+                // ここでは定義されているマクロによって異なる処理を行わせている
+                // #elifで他条件を定義している
                 #ifdef RED
 
                 return fixed4(1, 0, 0, 1);
