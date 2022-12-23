@@ -1,4 +1,7 @@
-﻿#ifndef LIBRARY_INCLUDED
+﻿// #includeには、多重定義の問題がある。
+// それを防ぐためにLibrary側で#ifndefをつかい
+// そのキーワードが定義されていないときにのみincludeさせる
+#ifndef LIBRARY_INCLUDED
 #define LIBRARY_INCLUDED
 
 #include "Library.cginc"

@@ -19,6 +19,10 @@
             #pragma vertex   vert
             #pragma fragment frag
 
+            // appdata と v2f 構造体と vert関数が共通なので、
+            // Libraryにまとめる。.cgincが拡張子
+            // Editor上から直接作成できないので、拡張子の変更などで対応する
+            // 今回のサンプルでは使うべきではない
             #include "Library.cginc"
             #include "UnityCG.cginc"
 
