@@ -2,6 +2,9 @@
 {
     Properties
     {
+        // マテリアルのプロパティからキーワードをコンパイルするマクロを切り替えることができる
+        // KeyWordEnumはFloatまたはint型に有効な属性です。
+        // KeyWordEnumは空のキーワードは定義できない
         [KeywordEnum(Red, Green, Blue)]
         _Color("Color Keyword", Float) = 0
     }
@@ -13,6 +16,8 @@
 
             #pragma vertex   vert
             #pragma fragment frag
+
+            // 変数名_引数名がキーワードとなる。変数名_引数名は大文字で定義する
             #pragma multi_compile _COLOR_RED _COLOR_GREEN _COLOR_BLUE
 
             #include "UnityCG.cginc"
