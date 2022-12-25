@@ -2,6 +2,8 @@
 {
     Properties
     {
+        // Propertiesで設定された値は、shaderLabによって定義される部分でも参照できます
+        // Cullなどをインスペクター上から変更することもできます。
         [Enum(UnityEngine.Rendering.CullMode)]        _CullMode("Cull",      Float) = 0
         [Enum(UnityEngine.Rendering.BlendMode)]       _BlendSrc("Blend Src", Float) = 1
         [Enum(UnityEngine.Rendering.BlendMode)]       _BlendDst("Blend Dst", Float) = 1
